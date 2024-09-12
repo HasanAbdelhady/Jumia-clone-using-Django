@@ -1,0 +1,43 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}
+Jumia
+{% endblock title %}
+{% block body %}
+<div class="flex items-center justify-center bg-gray-100 min-h-screen py-10">
+  <div class="w-full max-w-5xl">
+    <table class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+      <thead class="bg-cyan-500 text-white text-xl">
+        <tr>
+          <th class="py-4 px-6 font-semibold text-center">Product Name</th>
+          <th class="py-4 px-6 font-semibold text-center">Product</th>
+          <th class="py-4 px-6 font-semibold text-center">Delete Product</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700 divide-y divide-gray-200">
+        {% for product in products %}
+        <tr class="hover:bg-gray-50 transition duration-300 ease-in-out">
+          <td class="py-4 font-medium text-center text-lg">
+            {{ product.name}}</td>
+          <td class="py-4">
+            <a href="{{ product.id }}">
+              <img
+                class="w-32 h-32 object-fill  mx-auto hover:scale-110 transition duration-300 ease-in-out"
+                src="{{ product.image_url }}"
+                alt="{{ product.name }}">
+            </a>
+          </td>
+          <td class="py-4 text-center">
+            <a href="{% url 'products.delete' product.id %}"
+              class="text-red-500 hover:text-red-700 font-semibold">
+              <button
+                class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300">Delete</button>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock body %}

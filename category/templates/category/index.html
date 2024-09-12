@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+{% block title %}
+All Categories
+{% endblock title %}
+
+{% block body %}
+<div class="flex  justify-center bg-gray-100 min-h-screen pt-12">
+    <div class="w-full max-w-5xl">
+        <table class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+            <thead class="bg-cyan-500 text-white">
+                <tr>
+                    <th class="py-4 px-6 font-semibold text-left">Category
+                        Name</th>
+                    <th class="py-4 px-6 font-semibold text-left">Category
+                        Description</th>
+                    <th class="py-4 px-6 font-semibold text-left">Number of
+                        Items</th>
+                    <th class="py-4 px-6 font-semibold text-left">Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700 divide-y divide-gray-200">
+                {% for category in categories %}
+                <tr
+                    class="hover:bg-gray-50 transition duration-300 ease-in-out">
+                    <td class="py-4 px-6 font-medium">{{ category.name }}</td>
+                    <td class="py-4 px-6">{{ category.description }}</td>
+                    <td class="py-4 px-6">{{ category.products.all.count }}</td>
+                    <td class="py-4 px-6">
+                        <a href="{% url 'category.show' category.id %}"
+                            class="text-cyan-500 hover:text-cyan-600 font-semibold">
+                            Show
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}

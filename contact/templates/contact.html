@@ -1,0 +1,55 @@
+
+{% extends "layouts/base.html" %}
+{% block title %}Contact Us{% endblock title %}
+
+{% block body %}
+
+<div class="w-full flex flex-col items-center justify-center bg-gray-100 py-20">
+  <div class="bg-white shadow-lg rounded-lg p-10 max-w-3xl w-full">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">
+      Contact Us
+    </h1>
+    <p class="text-xl text-gray-600 mb-4 text-center">
+      We're here to help! If you have any questions, concerns, or feedback,
+      please don't hesitate to reach out to us.
+    </p>
+    <form action="/submit-contact-form/" method="post" class="space-y-4">
+      {% csrf_token %}
+      <div>
+        <label for="name" class="block text-lg text-gray-700 mb-2">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label for="email"
+          class="block text-lg text-gray-700 mb-2">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div>
+        <label for="message"
+          class="block text-lg text-gray-700 mb-2">Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+          class="w-full p-2 border border-gray-300 rounded"></textarea>
+      </div>
+      <button
+        type
+        class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+        Send Message
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock body %}
